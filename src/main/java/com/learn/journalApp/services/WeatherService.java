@@ -29,7 +29,8 @@ public class WeatherService {
         WeatherResponse weatherResponse = redisService.get("Weather_of_" + city, WeatherResponse.class);
         if(weatherResponse!=null){
             return weatherResponse;
-        }else{
+        }
+        else{
             String restApi = appCache.APP_CACHE.get(AppCache.keys.WEATHER_API.toString()).replace(PlaceHolders.API_KEY, apiKey).replace(PlaceHolders.CITY, city);
             ResponseEntity<WeatherResponse> response = restTemplate.exchange(restApi, HttpMethod.GET, null, WeatherResponse.class);
             WeatherResponse body = response.getBody();
